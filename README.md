@@ -8,6 +8,8 @@
 | 1 | Lê Thanh Hải | 23127360 | JuzHarii | |  |
 | 2 | Ngô Quang Thắng | 23127473 | Ganth1811 | |  |
 
+- **Kế hoạch & Tiến độ nhóm (Trello / Google Sheets)**: [Link Trello / Google Sheets]
+
 ---
 
 ## 2. Giới thiệu bộ dữ liệu (Dataset Overview)
@@ -38,7 +40,7 @@ cd [project-name]
 ### Bước 2: Tạo và kích hoạt môi trường Conda
 ```bash
 conda env create -f environment.yml
-conda activate pds_final_project
+conda activate min_ds-env
 ```
 
 ### Bước 3: Tải dữ liệu

@@ -1,6 +1,6 @@
 # Hướng dẫn làm việc nhóm với Git và Jupyter Notebook
 
-Tài liệu này ghi lại một số quy ước để nhóm làm việc chung trên repository mà không bị đụng code hay làm hỏng file notebook.
+Tài liệu này tổng hợp các quy ước làm việc nhóm, quy trình Git và các mốc thời gian của đồ án theo đúng yêu cầu từ môn học.
 
 ## 1. Thiết lập môi trường và công cụ
 
@@ -29,32 +29,19 @@ Thói quen cần nhớ trước khi chạy `git add`:
 
 Đến đợt nộp bài cuối cùng, khi đã chốt kết quả phân tích thì nhóm mới chạy lại toàn bộ để lưu biểu đồ hoàn chỉnh.
 
-## 3. Phân chia việc để tránh đụng file
+## 3. Quy trình làm việc trên Git theo từng giai đoạn
 
-Cách tốt nhất để không bị xung đột code là không cùng sửa một file notebook vào cùng một thời điểm:
-- Mỗi thành viên làm câu hỏi của mình theo phân công trong `README.md`.
-- Nếu cả hai cần phân tích cùng lúc, có thể tạo notebook nháp trên branch riêng (chẳng hạn `02_analysis_hai.ipynb` và `02_analysis_thang.ipynb`), khi xong xuôi thì gom lại vào file chính sau.
-- Với các hàm dùng lại nhiều lần (xử lý dữ liệu, định dạng biểu đồ), nên viết ra file Python trong thư mục `src/` (ví dụ `src/utils.py`) rồi import vào notebook. File `.py` là text thuần nên Git merge rất nhàn và an toàn.
+Để đảm bảo khối lượng công việc cân bằng giữa các thành viên và thể hiện rõ ràng trên lịch sử commit GitHub, nhóm áp dụng quy trình 3 bước cho từng giai đoạn:
 
-## 4. Quy trình Git hàng ngày
+1. **Chuẩn bị khung sườn (Skeleton)**: Một bạn tạo file notebook khung sườn ban đầu (đầy đủ các đầu mục Markdown theo yêu cầu của đồ án) rồi push lên nhánh `main`.
+2. **Làm việc độc lập trên branch riêng**: Mỗi người checkout nhánh riêng mang tên mình (ví dụ `feature/eda-hai`, `feature/eda-thang`) và tự thực hiện phần việc đó một cách độc lập. Lịch sử commit trên GitHub của mỗi bạn cần thể hiện rõ sự đóng góp cân bằng.
+3. **Họp nhóm và chốt bản chung (Group Version)**: Sau khi xong việc ở nhánh riêng, nhóm họp lại để cùng đọc hiểu notebook của nhau, chọn ra phương án xử lý tốt nhất để ghép thành bản chung của nhóm, sau đó mới merge các branch cá nhân vào `main`.
 
-Trước khi ngồi vào làm, kéo code mới nhất từ nhánh chính về:
+Với các câu hỏi phân tích và machine learning, mỗi người phụ trách các câu hỏi riêng theo phân công, nhưng cả hai đều phải hiểu trọn vẹn nội dung của nhau.
 
-```bash
-git pull origin main
-```
+Nếu có các hàm tính toán hay định dạng biểu đồ dùng lại nhiều lần, hãy đưa ra file Python thuần trong thư mục `src/` (ví dụ `src/utils.py`) rồi import vào notebook. File `.py` là text thuần nên Git merge rất nhàn và không lo lỗi format.
 
-Nên tạo branch riêng cho từng phần việc thay vì commit thẳng lên `main`:
-
-```bash
-git checkout -b feature/eda
-# Code, clear output, commit...
-git push origin feature/eda
-```
-
-File dữ liệu thô tải từ Kaggle về đặt trong `data/raw/`. Thư mục này đã có `.gitignore` chặn nên đừng dùng cờ `-f` để ép Git theo dõi các file CSV lớn.
-
-## 5. Xử lý khi dính merge conflict
+## 4. Xử lý khi dính merge conflict
 
 Nếu lỡ dính conflict khi pull hoặc merge một file `.ipynb`, đừng mở file đó bằng text editor để tự xóa các dòng `<<<<<<< HEAD`. Làm vậy rất dễ lệch dấu ngoặc JSON khiến Jupyter không mở được file nữa.
 
@@ -69,3 +56,25 @@ Tùy tình huống mà xử lý:
   ```bash
   nbmerge-web <base.ipynb> <local.ipynb> <remote.ipynb> -o <merged.ipynb>
   ```
+
+## 5. Trách nhiệm nhóm và cách tính điểm
+
+Thầy chấm điểm đồ án dựa trên nguyên tắc điểm chung của nhóm xấp xỉ bằng trung bình cộng điểm cá nhân của từng thành viên:
+- Nếu một bạn làm sơ sài hoặc vào buổi báo cáo không nắm được notebook chung, điểm của cả nhóm sẽ bị kéo tụt xuống.
+- Bạn nào nắm chắc kiến thức hơn cần chủ động hỗ trợ bạn còn lại. Tuy nhiên, hỗ trợ ở đây là giải thích và hướng dẫn để bạn tự làm, tuyệt đối không làm hộ.
+- Khi thuyết trình, thầy sẽ chỉ định ngẫu nhiên ai trình bày phần nào. Vì vậy, cả hai thành viên bắt buộc phải hiểu tường tận từng bước tiền xử lý, từng câu hỏi phân tích và mô hình trong đồ án.
+
+## 6. Kế hoạch từng giai đoạn và công cụ theo dõi
+
+Trước khi bắt tay vào mỗi giai đoạn của đồ án, nhóm cần họp ngắn để vạch ra danh sách việc cần làm, thời gian dự kiến cho từng việc và ai là người phụ trách chính.
+
+Nhóm sử dụng Trello (hoặc Google Sheets) để theo dõi tiến độ công việc và đính kèm đường link này vào file `README.md` theo đúng yêu cầu môn học.
+
+## 7. Các mốc thời gian quan trọng và phản biện chéo
+
+Gọi ngày thuyết trình là ngày x:
+- **Ngày x - 2 (trước 9:00 sáng)**: Nhóm phải hoàn thành và đẩy toàn bộ sản phẩm lên GitHub. Sau đó mở một GitHub Issue trên repository để thông báo đồ án đã hoàn tất và mời các nhóm khác vào review.
+- **Ngày x - 2 (sau 9:00 sáng)**: Mỗi thành viên của nhóm phải chủ động sang repository của nhóm khác để đọc bài và viết review thông qua GitHub Issue của nhóm bạn (đây là tiêu chí tính điểm cá nhân).
+- **Ngày x - 1**: Nhóm đọc các nhận xét phản biện từ nhóm bạn, tiếp thu chỉnh sửa lại đồ án, sau đó nộp bản hoàn chỉnh lên cả GitHub và Moodle.
+- **Ngày x (Thuyết trình online)**: Mỗi nhóm có khoảng 15 phút trình bày và 5 phút hỏi đáp (Q&A). Nhóm có thể chiếu và báo cáo trực tiếp trên file Jupyter Notebook, không cần tốn thời gian làm thêm slide. Khi trình bày, tập trung vào ý tưởng và kết quả chính, tránh đọc lướt từng dòng code.
+
