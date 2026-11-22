@@ -21,6 +21,9 @@ venv/
 ENV/
 .conda/
 
+# Agent AI files
+.agents/
+
 AGENTS.md
 
 # OS specific files
