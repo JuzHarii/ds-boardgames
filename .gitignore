@@ -21,6 +21,8 @@ venv/
 ENV/
 .conda/
 
+AGENTS.md
+
 # OS specific files
 .DS_Store
 Thumbs.db
