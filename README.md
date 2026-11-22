@@ -3,10 +3,10 @@
 
 ## 1. Thông tin nhóm & Phân công công việc
 
-| STT | Họ và tên | MSSV | GitHub Username | Vai trò & Phân công nhiệm vụ | Câu hỏi phụ trách chính |
-| :---: | :---: | :---: | :---: | :--- | :--- |
-| 1 | Lê Thanh Hải | 23127360 | JuzHarii | |  |
-| 2 | Ngô Quang Thắng | 23127473 | Ganth1811 | |  |
+| STT | Họ và tên | MSSV | GitHub Username | Nhiệm vụ |
+| :---: | :---: | :---: | :---: | :--- |
+| 1 | Lê Thanh Hải | 23127360 | JuzHarii | Xây dựng Notebook Skeleton |
+| 2 | Ngô Quang Thắng | 23127473 | Ganth1811 | |
 
 - **Kế hoạch & Tiến độ nhóm (Trello / Google Sheets)**: [Link Trello / Google Sheets]
 
